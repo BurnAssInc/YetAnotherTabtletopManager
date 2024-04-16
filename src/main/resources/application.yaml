@@ -1,6 +1,6 @@
 spring:
   application:
-    name: YetAnotherTabtletopManager
+    name: YetAnotherTabletopManager
   profiles:
     active: ${ACTIVE_PROFILE:dev} #dev or prod
   datasource:
