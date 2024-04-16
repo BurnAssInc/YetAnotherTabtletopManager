@@ -2,6 +2,10 @@
 - JDK 21
 - Running Docker
 
+## Gitflow
+Master push is prohibited, create new branch with your feature name and work there, then create pull request into master from your branch with squash, after successful merge, delete your work branch  
+It is done to avoid merge conflicts during simultaneous work
+
 ## Swagger&Docs
 http://localhost:8080/swagger-ui/index.html
 If you modify endpoints please describe it using sprindoc annotations as in [example](src/main/java/ru/surin/yatm/controller/api/SampleControllerApi.java)
