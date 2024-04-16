@@ -1,0 +1,19 @@
+spring:
+  application:
+    name: YetAnotherTabtletopManager
+  profiles:
+    active: ${ACTIVE_PROFILE:dev} #dev or prod
+  datasource:
+    url: ${DATABASE_URL:jdbc:postgresql://localhost:5432/mydatabase}
+    username: ${DATABASE_USERNAME:myuser}
+    password: ${DATABASE_PASSWORD:secret}
+  flyway:
+    enabled: true
+
+logging:
+  level:
+    root: ${LOGGING_LEVEL:info}
+
+springdoc:
+  swagger-ui:
+    operationsSorter: method
