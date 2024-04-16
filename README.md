@@ -2,6 +2,13 @@
 - JDK 21
 - Running Docker
 
+## Swagger&Docs
+http://localhost:8080/swagger-ui/index.html
+If you modify endpoints please describe it using sprindoc annotations as in [example](src/main/java/ru/surin/yatm/controller/api/SampleControllerApi.java)
+
+## Unit tests
+Write unit tests for every service you make
+
 ## Security
 By default `dev` profile is active disabling any security restrictions  
 Default username for /actuator : `user`  

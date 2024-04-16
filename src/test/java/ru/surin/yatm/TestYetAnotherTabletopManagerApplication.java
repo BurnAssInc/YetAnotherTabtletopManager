@@ -8,7 +8,7 @@ import org.testcontainers.containers.PostgreSQLContainer;
 import org.testcontainers.utility.DockerImageName;
 
 @TestConfiguration(proxyBeanMethods = false)
-public class TestYetAnotherTabtletopManagerApplication {
+public class TestYetAnotherTabletopManagerApplication {
 
     @Bean
     @ServiceConnection
@@ -17,7 +17,7 @@ public class TestYetAnotherTabtletopManagerApplication {
     }
 
     public static void main(String[] args) {
-        SpringApplication.from(YetAnotherTabtletopManagerApplication::main).with(TestYetAnotherTabtletopManagerApplication.class).run(args);
+        SpringApplication.from(YetAnotherTabletopManagerApplication::main).with(TestYetAnotherTabletopManagerApplication.class).run(args);
     }
 
 }

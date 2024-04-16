@@ -4,10 +4,10 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class YetAnotherTabtletopManagerApplication {
+public class YetAnotherTabletopManagerApplication {
 
     public static void main(String[] args) {
-        SpringApplication.run(YetAnotherTabtletopManagerApplication.class, args);
+        SpringApplication.run(YetAnotherTabletopManagerApplication.class, args);
     }
 
 }
