@@ -57,11 +57,11 @@ public class Character extends BasicEntity {
     private List<Skill> skillList;
 
     @ManyToOne
-    @JoinColumn(name = "fk_race_id",nullable = false)
+    @JoinColumn(name = "race_id",nullable = false)
     private Race race;
 
     @ManyToOne
-    @JoinColumn(name = "fk_deity_id",nullable = false)
+    @JoinColumn(name = "deity_id",nullable = false)
     private Deity deity;
 
     @ManyToMany

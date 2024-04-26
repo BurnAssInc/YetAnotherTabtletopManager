@@ -79,4 +79,3 @@ ALTER TABLE player
 
 ALTER TABLE campaign
     ADD FOREIGN KEY(character_id) REFERENCES dnd_character(id);
-
