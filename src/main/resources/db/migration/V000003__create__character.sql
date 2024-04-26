@@ -58,8 +58,6 @@ CREATE TABLE dnd_character (
                             character_speed INTEGER NOT NULL,
                             character_base_attack_bonus INTEGER NOT NULL,
                             player_id INTEGER,
---          TODO 001: При создании МТМ не следует использовать сохранять id  в таблице сущности.
---          Так как подобный вариант позволяет записывть только один экземпляр id (а не лист, как предпологается в моделе данных).
                             FOREIGN KEY (player_id) REFERENCES player(id),
                             campaign_id INTEGER,
                             FOREIGN KEY (campaign_id) REFERENCES campaign(id),
@@ -75,7 +73,7 @@ CREATE TABLE dnd_character (
                             FOREIGN KEY(deity_id) REFERENCES deity(id),
                             other text
 );
---          TODO 002: Необходимо создать линковую таблицу и добавить констренты
+
 ALTER TABLE player
     ADD FOREIGN KEY(campaign_id) REFERENCES campaign(id),
     ADD FOREIGN KEY(character_id) REFERENCES dnd_character(id);
