@@ -4,7 +4,7 @@ import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 
-import java.util.List;
+import java.util.*;
 
 
 @Entity
@@ -14,7 +14,7 @@ import java.util.List;
 
 public class Character extends BasicEntity {
     @Column (name = "character_name",nullable = false)
-    private String characterName;
+    private String name;
 
     @Column (name = "strength", nullable = false)
     private int strength;
@@ -37,7 +37,7 @@ public class Character extends BasicEntity {
 
 
     @ManyToOne
-    @JoinColumn (name = "fk_player_id",nullable = false)
+    @JoinColumn (name = "player_id")
     private Player player;
 
     @ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
@@ -54,14 +54,14 @@ public class Character extends BasicEntity {
     @ManyToMany
     @JoinTable(name="dnd_character_skill", joinColumns = @JoinColumn(name = "dnd_character_id",referencedColumnName = "id"),
             inverseJoinColumns = @JoinColumn (name = "skill_id",referencedColumnName = "id"))
-    private List<Skill> skillList;
+    private Set<Skill> skillList = new HashSet<>();
 
     @ManyToOne
-    @JoinColumn(name = "race_id",nullable = false)
+    @JoinColumn(name = "race_id"/*,nullable = false*/)
     private Race race;
 
     @ManyToOne
-    @JoinColumn(name = "deity_id",nullable = false)
+    @JoinColumn(name = "deity_id"/*,nullable = false*/)
     private Deity deity;
 
     @ManyToMany
@@ -69,16 +69,17 @@ public class Character extends BasicEntity {
             inverseJoinColumns = @JoinColumn (name = "item_id", referencedColumnName = "id"))
     private List<Item> itemList;
 
-    @Column (name = "other_description")
+    @Column (name = "other")
     private String otherDescription;
+
 
     public Character() {
         super();
     }
 
-    public Character(String characterName, int strength, int dexterity, int constitution, int intelligence, int wisdom, int charisma, int characterHp, int characterAc, int characterSpeed, int characterBaseAttackBonus, Player player, List<Campaign> campaignList, List<Feat> featList, List<Skill> skillList, Race race, Deity deity, List<Item> itemList, String otherDescription) {
+    public Character(String name, int strength, int dexterity, int constitution, int intelligence, int wisdom, int charisma, int characterHp, int characterAc, int characterSpeed, int characterBaseAttackBonus, Player player, List<Campaign> campaignList, List<Feat> featList, Set<Skill> skillList, Race race, Deity deity, List<Item> itemList, String otherDescription) {
         super();
-        this.characterName = characterName;
+        this.name = name;
         this.strength = strength;
         this.dexterity = dexterity;
         this.constitution = constitution;
@@ -97,4 +98,18 @@ public class Character extends BasicEntity {
         this.itemList = itemList;
         this.otherDescription = otherDescription;
     }
+
+    public void addSkill (Skill skill){
+        this.skillList.add(skill); //добавление skill в character
+
+        skill.getCharacterList().add(this); // добавление character в skill
+                                            //поидее таким образом в сочетании с repository.save
+                                            // записывается данные в таблицу связи MTM
+    }
+    public void deleteSkill (Skill skill){
+        this.skillList.remove(skill);
+        skill.getCharacterList().remove(this);
+    }
+
+
 }

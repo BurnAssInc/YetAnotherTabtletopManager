@@ -14,7 +14,7 @@ import java.util.List;
 public class Race extends BasicEntity{
     @Column (name="race_name", nullable = false)
 
-    private String raceName;
+    private String name;
 
     @OneToMany(mappedBy = "race", fetch = FetchType.LAZY)
     private List<Character> characterList;
@@ -24,9 +24,9 @@ public class Race extends BasicEntity{
         super();
     }
 
-    public Race(String raceName, List<Character>characterList) {
+    public Race(String name, List<Character>characterList) {
         super();
-        this.raceName = raceName;
+        this.name = name;
         this.characterList = characterList;
     }
 }

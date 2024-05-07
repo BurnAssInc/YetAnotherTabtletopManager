@@ -12,7 +12,7 @@ import java.util.List;
 @Table(name = "campaign")
 public class Campaign extends BasicEntity {
     @Column (name = "campaign_name", nullable = false)
-    private String campaignName;
+    private String name;
 
     @ManyToMany (mappedBy = "campaignList",fetch = FetchType.LAZY)
     private List <Player> playerList;
@@ -24,9 +24,9 @@ public class Campaign extends BasicEntity {
         super();
     }
 
-    public Campaign(String campaignName,List <Player> playerList, List<Character> characterList) {
+    public Campaign(String name, List <Player> playerList, List<Character> characterList) {
         super();
-        this.campaignName = campaignName;
+        this.name = name;
         this.playerList = playerList;
         this.characterList = characterList;
     }

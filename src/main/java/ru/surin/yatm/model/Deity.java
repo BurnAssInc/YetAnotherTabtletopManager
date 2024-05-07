@@ -12,7 +12,7 @@ import java.util.List;
 @Table(name = "deity")
 public class Deity extends BasicEntity{
     @Column(name="deity_name", nullable = false)
-    private String deityName;
+    private String name;
 
     @OneToMany(mappedBy = "deity", fetch = FetchType.LAZY)
     private List<Character> characterList;
@@ -21,9 +21,9 @@ public class Deity extends BasicEntity{
         super();
     }
 
-    public Deity(String deityName, List<Character>characterList) {
+    public Deity(String name, List<Character>characterList) {
         super();
-        this.deityName = deityName;
+        this.name = name;
         this.characterList = characterList;
     }
 }

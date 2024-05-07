@@ -13,7 +13,7 @@ import java.util.List;
 
 public class Item extends BasicEntity{
     @Column(name="item_name", nullable = false)
-    private String itemName;
+    private String name;
     @Column (name="item_description", nullable = false)
     private String itemDescription;
     @Column (name="item_price", nullable = false)
@@ -26,9 +26,9 @@ public class Item extends BasicEntity{
         super();
     }
 
-    public Item(String itemName, String itemDescription, int itemPrice, List<Character> characterList) {
+    public Item(String name, String itemDescription, int itemPrice, List<Character> characterList) {
         super();
-        this.itemName = itemName;
+        this.name = name;
         this.itemDescription = itemDescription;
         this.itemPrice = itemPrice;
         this.characterList = characterList;
