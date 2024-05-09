@@ -1,5 +1,5 @@
 package ru.surin.yatm.controller;
-
+// TODO 001: Неоптимизированные импорты (ctrl+alt+o (оу))
 import org.springdoc.api.OpenApiResourceNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.context.config.ConfigDataResourceNotFoundException;
@@ -30,7 +30,8 @@ public class CharacterController {
     @Autowired
     private CharacterRepository characterRepository;
 
-
+    // TODO 002: Для всего класса. Некорректное представление коментария (/**...*//)
+    // TODO 008: Для всего класса. Превыщение длинны строки блее чем 120 символов
     @GetMapping("/strength")//Сортировка по параметру strength
     public ResponseEntity<List<Character>> getCharacterListByStrength(@RequestParam(value = "str", required = false) int strength) {
         List<Character> characterList = new ArrayList<>();
@@ -44,6 +45,7 @@ public class CharacterController {
 
     }
 
+    // TODO 003: Для всего класса. Привести к единому виду все методы с использованием RequestParam
     @GetMapping("/{characterName}") //Получение списка Character по имени
     public ResponseEntity<List<Character>> getCharacterListByName(@PathVariable(value = "characterName", required = false) String name) {
         List<Character> characterList = new ArrayList<Character>();
@@ -77,7 +79,9 @@ public class CharacterController {
         return new ResponseEntity<>(characterList, HttpStatus.OK);
     }
 
-    //
+    // TODO 004: Для всего класса. Выбрасываемое исключение никак не обрабатывается.
+    //  Возможно следует использовать .findFirst().orElse(null);,
+    //  а далее при значении character == null (А вообще более красивый вариант: Objects.nonNull(character)) возвращать httpStatus.NO_CONTENT.
     @PostMapping("/addSkill")
     //добавление к Character skill по его имени (это скорее проверочный метод, т.к. возвращать значиние не нужно
     public ResponseEntity<Character> addSkillToCharacter(@RequestParam(value = "skillname") String skillName, @RequestParam(value = "chaname") String characterName) {

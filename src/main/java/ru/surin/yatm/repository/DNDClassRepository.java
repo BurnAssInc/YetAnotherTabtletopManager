@@ -9,5 +9,6 @@ import java.util.UUID;
 
 @Repository
 public interface DNDClassRepository extends JpaRepository<DnDClass, UUID> {
+    // TODO 006
     List<DnDClass> findByName (String name);
 }

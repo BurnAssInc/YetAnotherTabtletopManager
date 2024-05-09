@@ -28,7 +28,9 @@ public interface CharacterRepository extends JpaRepository<Character, UUID> {
     List<Character> findByCharacterAc(int characterAc);
 
     List<Character> findByCharacterSpeed(int characterSpeed);
-
+    // TODO 002
+    // TODO 005
+    // TODO 006
     //List<Character> findByPlayerId(UUID id);
 
     List<Character> findCharacterListBySkillListId(UUID id);//поиск списка персонажей по id скила

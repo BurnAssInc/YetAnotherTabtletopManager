@@ -11,6 +11,7 @@ import java.util.UUID;
 
 @Service
 public class ItemService {
+    // TODO 007
     @Autowired
     ItemRepository itemRepository;
 

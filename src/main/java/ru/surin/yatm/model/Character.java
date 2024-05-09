@@ -13,6 +13,7 @@ import java.util.*;
 @Table(name = "dnd_character")
 
 public class Character extends BasicEntity {
+    // TODO 006
     @Column (name = "character_name",nullable = false)
     private String name;
 
@@ -98,7 +99,7 @@ public class Character extends BasicEntity {
         this.itemList = itemList;
         this.otherDescription = otherDescription;
     }
-
+    // TODO 002
     public void addSkill (Skill skill){
         this.skillList.add(skill); //добавление skill в character
 

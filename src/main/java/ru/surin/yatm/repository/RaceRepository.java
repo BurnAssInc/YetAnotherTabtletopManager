@@ -8,5 +8,6 @@ import java.util.List;
 import java.util.UUID;
 @Repository
 public interface RaceRepository extends JpaRepository<Race, UUID> {
+    // TODO 006
     List<Race> findByName (String name);
 }

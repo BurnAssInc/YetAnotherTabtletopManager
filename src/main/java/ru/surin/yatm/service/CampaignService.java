@@ -11,6 +11,7 @@ import java.util.UUID;
 
 @Service
 public class CampaignService {
+    //    TODO 007: Все классы сервисов репозиториев следует вынести в отдельный пакет (типа repositoryServices)
     @Autowired
     CampaignRepository campaignRepository;
 

@@ -9,6 +9,7 @@ import java.util.UUID;
 
 @Repository
 public interface DeityRepository extends JpaRepository<Deity, UUID> {
+// TODO 006
 
     List<Deity> findByName (String name);
 }

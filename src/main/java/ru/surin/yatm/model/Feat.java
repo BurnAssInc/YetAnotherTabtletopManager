@@ -10,13 +10,13 @@ import java.util.List;
 @Getter
 @Setter
 @Table(name = "feat")
-
 public class Feat extends BasicEntity{
+    // TODO 006
     @Column(name="feat_name", nullable = false)
     private String name;
     @Column (name="feat_description", nullable = false)
     private String featDescription;
-
+    // TODO 002
     @ManyToMany(mappedBy = "featList", fetch = FetchType.LAZY)          //mappedBy по названию полю листа в Character
     private List<Character> characterList;
 

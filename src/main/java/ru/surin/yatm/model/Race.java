@@ -11,6 +11,7 @@ import java.util.List;
 @Setter
 @Table(name = "race")
 
+// TODO 006
 public class Race extends BasicEntity{
     @Column (name="race_name", nullable = false)
 

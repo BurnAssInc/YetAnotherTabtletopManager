@@ -6,6 +6,7 @@ import lombok.Setter;
 
 import java.util.List;
 
+// TODO 006
 @Entity
 @Getter
 @Setter

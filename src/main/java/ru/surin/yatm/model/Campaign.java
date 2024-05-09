@@ -13,6 +13,7 @@ import java.util.List;
 public class Campaign extends BasicEntity {
     @Column (name = "campaign_name", nullable = false)
     private String name;
+// TODO 006
 
     @ManyToMany (mappedBy = "campaignList",fetch = FetchType.LAZY)
     private List <Player> playerList;

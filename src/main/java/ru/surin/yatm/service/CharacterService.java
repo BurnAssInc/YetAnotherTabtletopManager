@@ -12,6 +12,8 @@ import java.util.UUID;
 
 @Service
 public class CharacterService {
+    // TODO 006
+    // TODO 007
     @Autowired
     CharacterRepository characterRepository;
 
