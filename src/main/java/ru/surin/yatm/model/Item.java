@@ -11,14 +11,15 @@ import java.util.List;
 @Setter
 @Table(name = "item")
 
+// TODO 006
 public class Item extends BasicEntity{
     @Column(name="item_name", nullable = false)
-    private String itemName;
+    private String name;
     @Column (name="item_description", nullable = false)
     private String itemDescription;
     @Column (name="item_price", nullable = false)
     private int itemPrice;
-
+// TODO 002
     @ManyToMany(mappedBy = "itemList", fetch = FetchType.LAZY)
     private List<Character> characterList; //по идее в item не должно быть поля character, нужно ли оптсывать их взаимосвязь
 
@@ -26,9 +27,9 @@ public class Item extends BasicEntity{
         super();
     }
 
-    public Item(String itemName, String itemDescription, int itemPrice, List<Character> characterList) {
+    public Item(String name, String itemDescription, int itemPrice, List<Character> characterList) {
         super();
-        this.itemName = itemName;
+        this.name = name;
         this.itemDescription = itemDescription;
         this.itemPrice = itemPrice;
         this.characterList = characterList;

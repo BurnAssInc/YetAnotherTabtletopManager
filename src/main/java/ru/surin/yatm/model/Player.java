@@ -6,6 +6,7 @@ import lombok.Setter;
 
 import java.util.List;
 
+// TODO 006
 @Entity
 @Getter
 @Setter
@@ -13,7 +14,7 @@ import java.util.List;
 
 public class Player extends BasicEntity{
     @Column(name = "player_name", nullable = false)
-    private String playerName;
+    private String name;
 
     @OneToMany (mappedBy = "player")
     private List<Character> characterList;
@@ -27,9 +28,9 @@ public class Player extends BasicEntity{
         super();
     }
 
-    public Player(String playerName, List<Character> characterList, List<Campaign> campaign) {
+    public Player(String name, List<Character> characterList, List<Campaign> campaign) {
         super();
-        this.playerName = playerName;
+        this.name = name;
         this.characterList = characterList;
         this.campaignList = campaignList;
     }
