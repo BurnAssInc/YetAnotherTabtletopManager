@@ -54,13 +54,13 @@ public class CharacterService {
         return characterRepository.findByCharacterSpeed(characterSpeed);
     }
     public List<Character> getCharacterListBySkillId(UUID id){
-        return characterRepository.findCharacterListBySkillListId(id);
+        return null;// characterRepository.findCharacterListBySkillListId(id);
     }
     public  List<Character> getAllCharacters(){
         return characterRepository.findAll();
     }
     public List<Character> getCharacterListBySkillName(String name){
-        return characterRepository.findCharacterListBySkillListName(name);
+        return null;//characterRepository.findCharacterListBySkillListName(name);
     }
 
 

@@ -18,7 +18,12 @@ public abstract class BasicEntity {
     //@GeneratedValue(strategy = GenerationType.AUTO)
     protected UUID id;
 
+    public UUID getId() {
+        return id;
+    }
+
     public BasicEntity() {
         this.id = UUID.randomUUID();
+
     }
 }

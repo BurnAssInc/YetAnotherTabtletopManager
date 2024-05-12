@@ -21,4 +21,8 @@ public class SkillService {
     public Optional<Skill> getSkillById (UUID id){
         return skillRepository.findById(id);
     }
+
+    public void changeSkillValue (Character character,Skill skill, int skillValue){
+        skillRepository.findByName(skill.getName());
+    }
 }
