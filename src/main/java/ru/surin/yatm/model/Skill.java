@@ -1,15 +1,14 @@
 package ru.surin.yatm.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.annotation.Nullable;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 
-import java.util.List;
 import java.util.Objects;
 import java.util.Set;
 
-// TODO 006
 @Entity
 @Setter
 @Getter
@@ -17,9 +16,12 @@ import java.util.Set;
 public class Skill extends BasicEntity {
     @Column(name = "skill_name", nullable = false)
     private String name;
+
     @Column(name = "skill_description", nullable = false)
     private String skillDescription;
-    @OneToMany(mappedBy = "skill", fetch = FetchType.LAZY)
+
+    @OneToMany(mappedBy = "skill", fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true)
+    @JsonIgnore //игнорирует загрузку поля
     @Nullable
     private Set<DndCharacterSkill> dndCharacterSkillSet;
 
