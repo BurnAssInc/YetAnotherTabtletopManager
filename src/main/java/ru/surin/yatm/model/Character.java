@@ -5,7 +5,9 @@ import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 
-import java.util.*;
+import java.util.List;
+import java.util.Optional;
+import java.util.Set;
 
 
 @Entity
@@ -14,7 +16,7 @@ import java.util.*;
 @Table(name = "dnd_character")
 
 public class Character extends BasicEntity {
-    // TODO 006
+
     @Column(name = "character_name", nullable = false)
     private String name;
 
@@ -54,9 +56,10 @@ public class Character extends BasicEntity {
     private List<Feat> featList;
 
     @Nullable
-    @OneToMany(mappedBy = "character", fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "character", fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true)
     private Set<DndCharacterSkill> dndCharacterSkillSet;
 
+    //TODO Вернуть nullable когда будут созданы таблицы
     @ManyToOne
     @JoinColumn(name = "race_id"/*,nullable = false*/)
     private Race race;
@@ -70,10 +73,6 @@ public class Character extends BasicEntity {
             inverseJoinColumns = @JoinColumn(name = "item_id", referencedColumnName = "id"))
     private List<Item> itemList;
 
-//    @ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-//    @JoinTable(name = "dnd_character_campaign", joinColumns = @JoinColumn(name = "dnd_character_id", referencedColumnName = "id"),
-//            inverseJoinColumns = @JoinColumn(name = "campaign_id", referencedColumnName = "id"))
-//    private List<Campaign> campaignList;
 
     @Column(name = "other")
     private String otherDescription;
@@ -105,17 +104,27 @@ public class Character extends BasicEntity {
         this.otherDescription = otherDescription;
     }
 
-    // TODO 002
-    public void addSkill(Skill skill) {
+    /**
+     * добавление character(this) и skill в сет
+     * в сочетании с repository.save
+     * записывается данные в таблицу связи MTM
+     * @param skill
+     * @param skillRank
+     */
+    public void addSkill(Skill skill, int skillRank) {
+        dndCharacterSkillSet.add(new DndCharacterSkill(this, skill, skillRank, skill.getName()));
 
-        dndCharacterSkillSet.add(new DndCharacterSkill(this, skill)); // добавление character в skill
-                                            //поидее таким образом в сочетании с repository.save
-                                            // записывается данные в таблицу связи MTM
+
     }
 
     public void deleteSkill(Skill skill) {
-        //this.skillSet.remove(skill);
-        //skill.getCharacterList().remove(this);
+        Optional<DndCharacterSkill> dndCharacterSkillOptional = dndCharacterSkillSet.stream()
+                .filter(characterSkillId -> characterSkillId.getId().getSkillId().equals(skill.id)
+                        && characterSkillId.getId().getCharacterId().equals(this.id))
+                .findFirst();
+        DndCharacterSkill dndCharacterSkill = dndCharacterSkillOptional.get();
+        dndCharacterSkillSet.remove(dndCharacterSkill);
+
     }
 
 
